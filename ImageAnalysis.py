@@ -1,7 +1,7 @@
 from PIL import Image
 from os import listdir
 
-data = {}
+data = []
 
 path = ''
 for dir in listdir('data'):
@@ -12,6 +12,10 @@ for dir in listdir('data'):
         if '.png' in file:
             im = Image.open(path+file)
             width, height = im.size
-            data[dir]=width
+            data.append([dir,'',width])
             print('{}'.format(width))
-  
+
+import csv
+with open('Angle-Distance_Data.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerows(data)  
